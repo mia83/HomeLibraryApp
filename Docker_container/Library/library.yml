@@ -1,0 +1,58 @@
+services:
+  db:
+    image: mariadb:11.1.2
+    restart: always
+    env_file:
+      - mariadb.env
+    volumes:
+      - type: bind
+        source: ./conf.d
+        target: /etc/mysql/conf.d
+        read_only: true
+      - mariadb-data-dir:/var/lib/mysql
+      - mariadb-socket:/var/run/mysqld
+      - mariadb-dump:/dump
+    networks:
+      - library_net
+    secrets:
+      - server.key
+      - CA.pem
+      - server.pem
+      - MARIADB_USER.pwd
+      - MARIADB_ROOT.pwd
+
+
+  db-backup:
+    image: mariadb
+    env_file:
+      - mariadb.env
+    volumes:
+      - mariadb-data-dir:/var/lib/mysql
+      - mariadb-socket:/var/run/mysqld
+      - mariadb-backup:/backup
+    secrets:
+      - MARIADB_ROOT.pwd
+      - MARIADB_USER.pwd
+
+
+networks:
+  library_net:
+    external: true
+
+volumes:
+  mariadb-data-dir:
+  mariadb-socket:
+  mariadb-backup:
+  mariadb-dump:
+
+secrets:
+  server.key:
+    file: C:\Docker\git_projects\secrets\Library\MIAHomeLabMARIA_DB.key
+  CA.pem:
+    file: C:\Docker\git_projects\secrets\Library\MIAHomeLabCA.crt
+  server.pem:
+    file: C:\Docker\git_projects\secrets\Library\MIAHomeLabMARIA_DB.crt
+  MARIADB_USER.pwd:
+    file: C:\Docker\git_projects\secrets\Library\MARIADB_USER.pwd
+  MARIADB_ROOT.pwd:
+    file: C:\Docker\git_projects\secrets\Library\MARIADB_ROOT.pwd
