@@ -1,6 +1,11 @@
 [mysqld]
 
 #
+# PORT
+#
+port = 4808
+
+#
 # * SSL/TLS
 #
 
