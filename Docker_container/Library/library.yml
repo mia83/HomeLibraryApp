@@ -6,6 +6,9 @@ services:
       - mariadb.env
     volumes:
       - type: bind
+        source: ./docker-entrypoint-initdb.d
+        target: /docker-entrypoint-initdb.d
+      - type: bind
         source: ./conf.d
         target: /etc/mysql/conf.d
         read_only: true
@@ -23,16 +26,19 @@ services:
 
 
   db-backup:
-    image: mariadb
+    image: mariadb:11.1.2
     env_file:
       - mariadb.env
     volumes:
       - mariadb-data-dir:/var/lib/mysql
       - mariadb-socket:/var/run/mysqld
       - mariadb-backup:/backup
+      - mariadb-dump:/dump
+      - type: bind
+        source: ./custom_scripts
+        target: /custom_scripts
     secrets:
-      - MARIADB_ROOT.pwd
-      - MARIADB_USER.pwd
+      - MARIADB_ROOT.pwd    
 
 
 networks:

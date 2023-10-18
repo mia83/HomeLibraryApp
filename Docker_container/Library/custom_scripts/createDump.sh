@@ -1,0 +1,1 @@
+mariadb-dump -u root -p -x -A > /dump/`date +%F_%X`.sql
