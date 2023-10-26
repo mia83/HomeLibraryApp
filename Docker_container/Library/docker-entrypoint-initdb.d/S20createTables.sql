@@ -11,5 +11,4 @@ CREATE TABLE IF NOT EXISTS library.books
     author_id smallint unsigned NOT NULL,
     grade tinyint,
     genre_id smallint unsigned,
-    read_date date,
     comment char(255));
