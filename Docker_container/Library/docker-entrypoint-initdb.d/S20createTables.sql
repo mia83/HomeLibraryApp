@@ -5,6 +5,9 @@ CREATE TABLE IF NOT EXISTS library.authors
 CREATE TABLE IF NOT EXISTS library.genres
     (genre_id smallint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title char(20) NOT NULL);
+CREATE TABLE IF NOT EXISTS library.grades
+    (grade tinyint PRIMARY KEY,
+    emoji blob);
 CREATE TABLE IF NOT EXISTS library.books
     (book_id smallint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title char(50) NOT NULL,
