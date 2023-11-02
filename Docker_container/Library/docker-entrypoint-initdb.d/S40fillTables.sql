@@ -10,7 +10,9 @@ insert into library.list_authors (last_name, first_name)
         ('вебб','холли'),
         ('милфорд', 'кейт'),
         ('линдгрен','астрид '),
-        ('борисова','ариадна');
+        ('борисова','ариадна'),
+        ('кинг-смит','дик'),
+        ('koren','majda');
 insert into library.list_grades (grade, emoji)
     values
         (1,NULL),
@@ -45,3 +47,11 @@ insert into library.list_books (title, author_id, grade_id, genre_id, comment)
     select 'записки для моих потомков 2', a.id, gr.id, ge.id, 'первая часть понравилась больше'
     from list_authors a, list_genres ge, list_grades gr
     where a.last_name='борисова' and a.first_name = 'ариадна' and ge.title='приключения' and gr.grade=4;
+insert into library.list_books (title, author_id, grade_id, genre_id, comment)
+    select 'леди дейзи', a.id, gr.id, ge.id, 'очень крутая книга, рекомендую к прочтению'
+    from list_authors a, list_genres ge, list_grades gr
+    where a.last_name='кинг-смит' and a.first_name = 'дик' and ge.title='фэнтези' and gr.grade=5;
+insert into library.list_books (title, author_id, grade_id, genre_id, comment)
+    select 'mala pošast mici', a.id, gr.id, ge.id, 'книга на словенском языке, очень смешная'
+    from list_authors a, list_genres ge, list_grades gr
+    where a.last_name='koren' and a.first_name = 'majda' and ge.title='фэнтези' and gr.grade=4;
