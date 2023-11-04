@@ -8,7 +8,7 @@ class books(models.Model):
     title = models.CharField(max_length=50)
     author = models.ForeignKey('authors', on_delete=models.SET_NULL, null=True)
     grade = models.ForeignKey('grades', on_delete=models.SET_NULL, null=True)
-    genre = models.ManyToManyField('genres')
+    genre = models.ForeignKey('genres', on_delete=models.SET_NULL, null=True)
     comment = models.CharField(max_length=255, blank=True)
     
     # Methods
