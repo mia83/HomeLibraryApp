@@ -16,7 +16,12 @@ import os
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    DB_USER=(str,''),
+    DB_PASSWORD=(str,''),
+    DB_HOST=(str,''),
+    DB_PORT=(str,''),
+    DB_OPTIONS=(dict,{})
 )
  
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,21 +88,19 @@ WSGI_APPLICATION = 'HomeLibraryApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 
 DATABASES = {
     'default': {
         'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME')
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'OPTIONS': env('DB_OPTIONS')
     }
 }
 
-print('------------------------', DATABASES)
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
