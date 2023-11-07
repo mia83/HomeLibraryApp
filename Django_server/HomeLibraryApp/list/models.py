@@ -5,11 +5,11 @@ from django.db import models
 class books(models.Model):
 
     # Fields
-    title = models.TextField(max_length=50)
+    title = models.CharField(max_length=50)
     author = models.ForeignKey('authors', on_delete=models.SET_NULL, null=True)
     grade = models.ForeignKey('grades', on_delete=models.SET_NULL, null=True)
-    genre = models.ManyToManyField('genres')
-    comment = models.TextField(max_length=255, blank=True)
+    genre = models.ForeignKey('genres', on_delete=models.SET_NULL, null=True)
+    comment = models.CharField(max_length=255, blank=True)
     
     # Methods
     def __str__(self):
@@ -50,7 +50,7 @@ class genres(models.Model):
 class grades(models.Model):
 
     # Fields
-    grade = models.IntegerField()
+    grade = models.CharField(max_length=1)
     #emoji = models.ImageField()
     '''
     To use ImageField we need to install Pillow. HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow"
