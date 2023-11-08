@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-
+    path('', views.add_new_book, name='adder')
 ]
