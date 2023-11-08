@@ -18,7 +18,7 @@ services:
     networks:
       - library_net
     ports:
-      - 3307:3306
+      - 3307:4808
     secrets:
       - server.key
       - CA.pem
