@@ -10,10 +10,10 @@ ALTER USER 'elvira'@'%'
         MAX_USER_CONNECTIONS 10
     PASSWORD EXPIRE NEVER
     ACCOUNT UNLOCK;
-'''
+/*
         ISSUER '/C=SI/O=MIA Home Lab/CN=MIA Home Lab CA' AND
         SUBJECT '/C=SI/O=MIA Home Lab/CN=MIA Home Lab DB Client'
-'''
+*/
 
 GRANT ALL PRIVILEGES
     ON library.*
