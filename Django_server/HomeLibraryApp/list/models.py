@@ -1,14 +1,14 @@
 from django.db import models
 
 # Create your models here.
-
+"""Форма не может быть добавлена в БД, так как она неправильная, ошибка где-то здесь (скорее всего)"""
 class books(models.Model):
 
     # Fields
     title = models.TextField(max_length=50)
     author = models.ForeignKey('authors', on_delete=models.SET_NULL, null=True)
     grade = models.ForeignKey('grades', on_delete=models.SET_NULL, null=True)
-    genre = models.ManyToManyField('genres')
+    genre = models.ForeignKey('genres', on_delete=models.SET_NULL, null=True)
     comment = models.TextField(max_length=255, blank=True)
     
     # Methods
@@ -51,7 +51,7 @@ class genres(models.Model):
 class grades(models.Model):
 
     # Fields
-    grade = models.IntegerField()
+    grade = models.CharField(max_length=1)
     #emoji = models.ImageField()
     '''
     To use ImageField we need to install Pillow. HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow"
