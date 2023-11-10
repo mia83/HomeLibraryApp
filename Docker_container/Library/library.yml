@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:11.1.2
+    image: mia83/mariadb:11.1.2
     restart: always
     env_file:
       - mariadb.env
@@ -17,6 +17,8 @@ services:
       - mariadb-dump:/dump
     networks:
       - library_net
+    ports:
+      - 3307:3306
     secrets:
       - server.key
       - CA.pem
