@@ -73,3 +73,9 @@ insert into library.list_books (title, author_id, grade_id, genre_id, comment)
     where a.last_name='koren' and a.first_name = 'majda'
         and ge.title='фэнтези'
         and gr.grade=4;
+insert into library.list_books (title, author_id, grade_id, genre_id, comment)
+    select 'пеппи длинныйчулок', a.id, gr.id, ge.id, 'забавные приключения девочки пеппи, которая выросла на корабле своего отца и много путешествовала'
+    from list_authors a, list_genres ge, list_grades gr
+    where a.last_name='линдгрен' and a.first_name = 'астрид'
+        and ge.title='приключения'
+        and gr.grade=5;
