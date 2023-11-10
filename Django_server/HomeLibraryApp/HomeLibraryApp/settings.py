@@ -21,7 +21,6 @@ env = environ.Env(
     DB_PASSWORD=(str,''),
     DB_HOST=(str,''),
     DB_PORT=(str,''),
-    DB_OPTIONS=(dict,{})
 )
  
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -97,7 +96,11 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-        'OPTIONS': env('DB_OPTIONS')
+        'OPTIONS': env.dict(
+                    'DB_OPTIONS',
+                    cast={'value': str},
+                    default={}
+        )
     }
 }
 
