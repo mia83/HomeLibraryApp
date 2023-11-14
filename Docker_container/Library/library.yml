@@ -42,6 +42,13 @@ services:
     secrets:
       - MARIADB_ROOT.pwd    
 
+  web:
+    image: httpd:latest
+    ports:
+      - 2280:80
+    networks:
+      - library_net
+  
 
 networks:
   library_net:
