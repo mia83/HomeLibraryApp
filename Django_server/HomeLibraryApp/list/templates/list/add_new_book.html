@@ -10,8 +10,8 @@
     <main>
         <h3>добавление записи</h3>
     </main>
-
     <div class="features">
+
         <form method="post">
             {% csrf_token %}
             {{ form.title }}<br>
@@ -19,8 +19,8 @@
             {{ form.genre }}<br>
             {{ form.grade }}<br>
             {{ form.comment }}<br>
-      <button class="btn btn-success" type="submit">готово</button>
-    </form>
+            <button class="btn btn-success" type="submit">готово</button>
+        </form>
     </div>
 
     {% block asider %}
