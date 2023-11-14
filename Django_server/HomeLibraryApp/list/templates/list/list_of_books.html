@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+    <link rel="stylesheet" href="{% static 'css/for_simple_list.css' %}">
+</head>
+<body>
+    <br>
+    <form action="{% url 'list' %}" method="get">
+        <input name="q" type="text" placeholder="поиск">
+    </form>
+    <br>
+    {% for ob in all_objs %}
+    <span>
+        <h3>название: </h3>
+        <h4>автор: </h4>
+        <h4>описание: </h4>
+    </span>
+    <div>
+        <h3>{{ob.title}}</h3>
+        <h4>{{ob.author}}</h4>
+        <a href="">развернуть</a>
+    </div>
+    <br>
+    {% endfor %}
+</body>
+</html>
