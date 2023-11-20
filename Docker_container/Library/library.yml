@@ -3,13 +3,13 @@ services:
     image: mia83/mariadb:11.1.2
     restart: always
     env_file:
-      - mariadb.env
+      - ./db/mariadb.env
     volumes:
       - type: bind
-        source: ./docker-entrypoint-initdb.d
+        source: ./db/docker-entrypoint-initdb.d
         target: /docker-entrypoint-initdb.d
       - type: bind
-        source: ./conf.d
+        source: ./db/conf.d
         target: /etc/mysql/conf.d
         read_only: true
       - mariadb-data-dir:/var/lib/mysql
@@ -30,24 +30,29 @@ services:
   db-backup:
     image: mariadb:11.1.2
     env_file:
-      - mariadb.env
+      - /db/mariadb.env
     volumes:
       - mariadb-data-dir:/var/lib/mysql
       - mariadb-socket:/var/run/mysqld
       - mariadb-backup:/backup
       - mariadb-dump:/dump
       - type: bind
-        source: ./custom_scripts
+        source: ./db/custom_scripts
         target: /custom_scripts
     secrets:
       - MARIADB_ROOT.pwd    
 
   web:
-    image: httpd:latest
+    image: mia83/httpd-wsgi:2.4.58
     ports:
       - 2280:80
     networks:
       - library_net
+    secrets:
+      - CA.pem
+      - client.pem
+      - client.key
+
   
 
 networks:
@@ -71,3 +76,7 @@ secrets:
     file: C:\Docker\git_projects\secrets\Library\MARIADB_USER.pwd
   MARIADB_ROOT.pwd:
     file: C:\Docker\git_projects\secrets\Library\MARIADB_ROOT.pwd
+  client.key:
+    file: C:\Docker\git_projects\secrets\Library\MIAHomeLabDBClient.key
+  client.pem:
+    file: C:\Docker\git_projects\secrets\Library\MIAHomeLabDBClient.crt
