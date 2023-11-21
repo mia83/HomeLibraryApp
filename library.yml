@@ -43,9 +43,13 @@ services:
       - MARIADB_ROOT.pwd    
 
   web:
-    image: mia83/httpd-wsgi:2.4.58
+    image: mia83/library-web:latest
+    build:
+      context: .
+      dockerfile: WebDockerFile
+    restart: always
     ports:
-      - 2280:80
+      - 9080:80
     networks:
       - library_net
     secrets:
