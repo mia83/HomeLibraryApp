@@ -1,8 +1,6 @@
 from django.db import models
 
 # Create your models here.
-"""Форма не может быть добавлена в БД, так как она неправильная, ошибка где-то здесь (скорее всего),
- возможно из-за ForeignKey (можно увидеть в админке)"""
 
 class books(models.Model):
 
@@ -12,6 +10,7 @@ class books(models.Model):
     grade = models.ForeignKey('grades', on_delete=models.SET_NULL, null=True)
     genre = models.ForeignKey('genres', on_delete=models.SET_NULL, null=True)
     comment = models.TextField(max_length=255, blank=True)
+    readdate = models.DateField(auto_now_add=True)
 
     class Meta:    #как будет отображаться неполное и полное имя модели в админке
         verbose_name = 'book'
