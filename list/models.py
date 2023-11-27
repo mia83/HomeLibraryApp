@@ -15,6 +15,7 @@ class books(models.Model):
     class Meta:    #как будет отображаться неполное и полное имя модели в админке
         verbose_name = 'book'
         verbose_name_plural = 'books'
+        db_table = 'list_books'
     
     # Methods
     def __str__(self):
@@ -43,6 +44,7 @@ class authors(models.Model):
         ordering = ["last_name"]
         verbose_name = 'author'
         verbose_name_plural = 'authors'
+        db_table = 'list_authors'
 
 
 class genres(models.Model):
@@ -57,6 +59,7 @@ class genres(models.Model):
     class Meta:
         verbose_name = 'genre'
         verbose_name_plural = 'genres'
+        db_table = 'list_genres'
     
 
 class grades(models.Model):
@@ -75,3 +78,4 @@ class grades(models.Model):
     class Meta:
         verbose_name = 'grade'
         verbose_name_plural = 'grades'
+        db_table = 'list_grades'
