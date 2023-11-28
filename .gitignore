@@ -1,5 +1,5 @@
-**.env
-!**mariadb.env
+*.env
 __pycache__/
-migrations/
+*/migrations/*
+!__init__.py
 **.sqlite3
