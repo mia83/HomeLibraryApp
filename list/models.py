@@ -1,4 +1,10 @@
 from django.db import models
+import environ
+
+env = environ.Env(
+    DB_MANAGED=(bool, True),
+)
+db_managed = env('DB_MANAGED')
 
 # Create your models here.
 
@@ -16,6 +22,7 @@ class books(models.Model):
         verbose_name = 'book'
         verbose_name_plural = 'books'
         db_table = 'list_books'
+        managed = db_managed
     
     # Methods
     def __str__(self):
@@ -45,6 +52,7 @@ class authors(models.Model):
         verbose_name = 'author'
         verbose_name_plural = 'authors'
         db_table = 'list_authors'
+        managed = db_managed
 
 
 class genres(models.Model):
@@ -60,6 +68,7 @@ class genres(models.Model):
         verbose_name = 'genre'
         verbose_name_plural = 'genres'
         db_table = 'list_genres'
+        managed = db_managed
     
 
 class grades(models.Model):
@@ -79,3 +88,4 @@ class grades(models.Model):
         verbose_name = 'grade'
         verbose_name_plural = 'grades'
         db_table = 'list_grades'
+        managed = db_managed
